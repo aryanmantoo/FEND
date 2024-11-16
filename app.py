@@ -20,4 +20,5 @@ def send_message():
 
 # Run the application
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    app.run(host='0.0.0.0', port=5000)
+
