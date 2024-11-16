@@ -7,7 +7,7 @@ socketio = SocketIO(app)
 # Route to serve the front end
 @app.route("/")
 def index():
-    return render_template("Index.html")
+    return render_template("index.html")
 
 # Endpoint for sending a custom message from the backend
 @app.route("/send_message", methods=["POST"])
