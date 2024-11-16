@@ -20,6 +20,5 @@ def send_message():
     return {"status": "success", "message": message}, 200
 
 # Run the application
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
-
+if __name__ == '__main__':
+    app.run(debug=True)
