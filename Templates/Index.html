@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Message UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #message-box {
+            padding: 20px;
+            font-size: 2em;
+            color: #333;
+            background-color: #ffeaa7;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        #youtube-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #youtube-button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+
+<div id="message-box">Waiting for a message...</div>
+<button id="youtube-button">click me</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.min.js"></script>
+<script>
+    const socket = io();
+    const messageBox = document.getElementById("message-box");
+    const youtubeButton = document.getElementById("youtube-button");
+
+    // Listen for incoming messages from the backend
+    socket.on("display_message", (data) => {
+        const message = data.message;
+        console.log(`Received message: ${message}`);
+
+        // Display the message in the message box
+        messageBox.textContent = message;
+
+        // Add a random animation effect
+        messageBox.classList.add("animate__animated", "animate__bounceIn");
+        setTimeout(() => {
+            messageBox.classList.remove("animate__animated", "animate__bounceIn");
+        }, 1000);
+    });
+
+    // Event listener for the YouTube button
+    youtubeButton.addEventListener("click", () => {
+        const youtubeUrl = "https://youtu.be/DAYszemgPxc?t=117"; // Replace with your desired YouTube URL
+        window.open(youtubeUrl, "_blank");
+    });
+</script>
+
+</body>
+</html>
