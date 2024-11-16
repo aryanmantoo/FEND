@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
+
 socketio = SocketIO(app)
 
 # Route to serve the front end
