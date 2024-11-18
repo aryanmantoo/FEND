@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
+import os
 
 app = Flask(__name__,)
 
@@ -20,5 +21,6 @@ def send_message():
     return {"status": "success", "message": message}, 200
 
 # Run the application
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
